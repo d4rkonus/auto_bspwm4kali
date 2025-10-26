@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$(whoami)" != "root" ]; then
-    echo "You must run this beeing root."
+    echo -e "You must run this beeing root."
     exit 1
 fi
 
@@ -59,7 +59,7 @@ install_picom(){
 }
 
 final_script(){
-    echo "\nHasta ahora todo bien\n"
+    echo -e "\nHasta ahora todo bien\n"
 }
 
 
