@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if [ "$(whoami)" != "root" ]; then
-    echo -e "\e[0;31m\033[1mYou must run this being root.\033[0m\e[0m"
-    exit 1
-fi
-
 # Colours
 greenColour="\e[0;32m\033[1m"
 endColour="\033[0m\e[0m"
@@ -15,7 +10,15 @@ purpleColour="\e[0;35m\033[1m"
 turquoiseColour="\e[0;36m\033[1m"
 grayColour="\e[0;37m\033[1m"
 
+
+if [ "$(whoami)" != "root" ]; then
+    echo -e "\n${redColour}You must run this being root.${endColour}\n"
+    exit 1
+fi
+
 ruta=$(pwd)
+
+tput civis
 
 installation_1(){
     echo -e "${yellowColour}Installing environment dependencies ...${endColour}\n"
@@ -58,6 +61,36 @@ install_picom(){
     ninja -C build install > /dev/null 2>&1
 }
 
+move_fonts(){
+    cp -v $ruta/autobspwm4kali/fonts/* /usr/share/fonts/
+}
+
+kitty_4_root(){
+    sudo cp -rv $ruta/auto_bspwm4kali/kitty /root/.config/
+
+}
+
+p10k_configure(){
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
+    echo 'source ~/.powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
+
+    sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/.powerlevel10k
+
+    rm -rf ~/.zshrc
+    cp -v $ruta/.zshrc ~/.zshrc
+
+    cp -v $ruta/.p10k.zsh ~/.p10k.zsh
+    sudo cp -v $ruta/.p10k.zsh /root/.p10k.zsh
+}
+
+plugins_install(){
+    sudo apt install -y zsh-syntax-highlighting zsh-autosuggestions
+    sudo mkdir /usr/share/zsh-sudo
+    cd /usr/share/zsh-sudo
+    sudo wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
+}
+
+
 final_script(){
     echo -e "\n${greenColour}✔ Hasta ahora todo bien.${endColour}\n"
 }
@@ -69,4 +102,8 @@ installation_3
 installation_4
 github_temporal_folder
 install_picom
+move_fonts
+kitty_4_root
+p10k_configure
+plugins_install
 final_script
