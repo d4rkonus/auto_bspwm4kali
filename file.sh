@@ -62,11 +62,11 @@ install_picom(){
 }
 
 move_fonts(){
-    cp -v $ruta/autobspwm4kali/fonts/* /usr/share/fonts/
+    cp -v $ruta/fonts/* /usr/share/fonts/
 }
 
 kitty_4_root(){
-    sudo cp -rv $ruta/auto_bspwm4kali/kitty /root/.config/
+    sudo cp -rv $ruta/kitty /root/.config/
 
 }
 
