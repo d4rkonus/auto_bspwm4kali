@@ -32,8 +32,9 @@ installation_2(){
 
 installation_3(){
     echo -e "${yellowColour}Installing additional tools ...${endColour}\n"
-    apt install -y kitty feh scrot scrub rofi xclip bat locate ranger neofetch wmname acpi bspwm sxhkd > /dev/null 2>&1
+    apt install -y feh scrot scrub rofi xclip bat locate ranger neofetch wmname acpi bspwm sxhkd > /dev/null 2>&1
 }
+
 
 installation_4(){
     echo -e "${yellowColour}Installing Picom dependencies ...${endColour}\n"
@@ -59,6 +60,10 @@ install_picom(){
     meson --buildtype=release . build > /dev/null 2>&1
     ninja -C build > /dev/null 2>&1
     ninja -C build install > /dev/null 2>&1
+}
+
+install_kitty(){
+    apt install -y kitty
 }
 
 move_fonts(){
