@@ -85,10 +85,12 @@ move_fonts(){
     cp -v $ruta/fonts/* /usr/share/fonts/ > /dev/null 2>&1
 }
 
-move_kitty_files(){
-    mkdir -p /.config/kitty > /dev/null 2>&1
-    cp -v $ruta/config/* /.config/kitty/ > /dev/null 2>&1
+move_kitty_files() {
+    mkdir -p "$HOME/.config/kitty"
+    cp "$ruta/config/kitty.conf" "$HOME/.config/kitty/" > /dev/null 2>&1
+    cp "$ruta/config/color.ini" "$HOME/.config/kitty/" > /dev/null 2>&1
 }
+
 
 kitty_4_root(){
     sudo cp -rv $ruta/kitty /root/.config/ > /dev/null 2>&1
