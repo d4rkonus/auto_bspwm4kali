@@ -75,17 +75,11 @@ kitty_4_root(){
 
 }
 
-p10k_configure(){
+p10k_install(){
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.powerlevel10k
     echo 'source ~/.powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
 
     sudo git clone --depth=1 https://github.com/romkatv/powerlevel10k.git /root/.powerlevel10k
-
-    rm -rf ~/.zshrc
-    cp -v $ruta/.zshrc ~/.zshrc
-
-    cp -v $ruta/.p10k.zsh ~/.p10k.zsh
-    sudo cp -v $ruta/.p10k.zsh /root/.p10k.zsh
 }
 
 plugins_install(){
@@ -95,6 +89,14 @@ plugins_install(){
     sudo wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh
 }
 
+p10k_on(){
+    zsh
+    rm -rf ~/.zshrc
+    cp -v $ruta/.zshrc ~/.zshrc
+
+    cp -v $ruta/.p10k.zsh ~/.p10k.zsh
+    sudo cp -v $ruta/.p10k.zsh /root/.p10k.zsh
+}
 
 final_script(){
     echo -e "\n${greenColour}✔ Hasta ahora todo bien.${endColour}\n"
@@ -107,8 +109,10 @@ installation_3
 installation_4
 github_temporal_folder
 install_picom
+install_kitty
 move_fonts
 kitty_4_root
-p10k_configure
+p10k_install
 plugins_install
+p10k_on
 final_script
