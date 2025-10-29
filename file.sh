@@ -11,7 +11,7 @@ turquoiseColour="\e[0;36m\033[1m"
 grayColour="\e[0;37m\033[1m"
 
 if [ "$TERM" != "xterm-kitty" ]; then 
-    echo -e "\n${redColour}You must install kitty before running the installation.${end.Colour}\n" 
+    echo -e "\n${redColour}You must install kitty before running the installation.${endColour}\n" 
     exit 1 
 fi
 
