@@ -20,7 +20,7 @@ fi
 
 ruta=$(pwd)
 
-tput civis
+
 
 check_kitty() {
     if [[ "$TERM" != *kitty* ]]; then
@@ -37,7 +37,7 @@ check_root_user() {
     fi
 }
 
-
+tput civis
 
 installation_1(){
     echo -e "${yellowColour}Installing environment dependencies ...${endColour}\n"
@@ -85,6 +85,11 @@ move_fonts(){
     cp -v $ruta/fonts/* /usr/share/fonts/
 }
 
+move_kitty_files(){
+    mkdir -p /.config/kitty
+    cp -v $ruta/config/* /.config/kitty/
+}
+
 kitty_4_root(){
     sudo cp -rv $ruta/kitty /root/.config/
 
@@ -99,4 +104,5 @@ installation_4
 github_temporal_folder
 install_picom
 move_fonts
+move_kitty_files
 kitty_4_root
