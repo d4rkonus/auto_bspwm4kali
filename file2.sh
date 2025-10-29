@@ -16,14 +16,28 @@ if [ "$(whoami)" != "root" ]; then
     exit 1
 fi
 
-if [ "$TERM" != "xterm-kitty" ]; then
-    echo -e "\n${redColour}You must install kitty before running the installation.${end.Colour}\n"
-    exit 1
-fi
+
 
 ruta=$(pwd)
 
 tput civis
+
+check_kitty() {
+    if [[ "$TERM" != *kitty* ]]; then
+        echo -e "\n${redColour}You must install Kitty before running the installation.${endColour}\n"
+        exit 1
+    fi
+}
+
+
+check_root_user() {
+    if [[ $EUID -ne 0 ]]; then
+        echo -e "\n${redColour}You must run this script as root.${endColour}\n"
+        exit 1
+    fi
+}
+
+
 
 installation_1(){
     echo -e "${yellowColour}Installing environment dependencies ...${endColour}\n"
@@ -76,6 +90,8 @@ kitty_4_root(){
 
 }
 
+check_kitty
+check_root_user
 installation_1
 installation_2
 installation_3
