@@ -82,16 +82,16 @@ install_picom(){
 }
 
 move_fonts(){
-    cp -v $ruta/fonts/* /usr/share/fonts/
+    cp -v $ruta/fonts/* /usr/share/fonts/ > /dev/null 2>&1
 }
 
 move_kitty_files(){
-    mkdir -p /.config/kitty
-    cp -v $ruta/config/* /.config/kitty/
+    mkdir -p /.config/kitty > /dev/null 2>&1
+    cp -v $ruta/config/* /.config/kitty/ > /dev/null 2>&1
 }
 
 kitty_4_root(){
-    sudo cp -rv $ruta/kitty /root/.config/
+    sudo cp -rv $ruta/kitty /root/.config/ > /dev/null 2>&1
 
 }
 
